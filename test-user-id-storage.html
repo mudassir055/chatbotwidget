@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot Widget - User ID & Storage Test</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: white;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .info-section {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+      }
+      .button {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 5px;
+        transition: all 0.3s ease;
+      }
+      .button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+      .output {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 10px;
+        font-family: monospace;
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+      .feature-list {
+        list-style: none;
+        padding: 0;
+      }
+      .feature-list li {
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .feature-list li:last-child {
+        border-bottom: none;
+      }
+      .feature-list li::before {
+        content: "✓";
+        color: #4ade80;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🤖 Chatbot Widget - User ID & Storage Test</h1>
+
+      <div class="info-section">
+        <h3>✨ New Features Implemented:</h3>
+        <ul class="feature-list">
+          <li>Unique user identifier generation and persistence</li>
+          <li>Chat history saved to local storage</li>
+          <li>Messages persist across page refreshes</li>
+          <li>User ID sent to webhook for backend tracking</li>
+          <li>Chat history context sent with each message</li>
+          <li>Automatic cleanup (keeps last 50 messages)</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>🔧 Test Functions:</h3>
+        <button class="button" onclick="showUserId()">Show User ID</button>
+        <button class="button" onclick="showChatHistory()">
+          Show Chat History
+        </button>
+        <button class="button" onclick="clearHistory()">
+          Clear Chat History
+        </button>
+        <button class="button" onclick="addTestMessage()">
+          Add Test Message
+        </button>
+        <button class="button" onclick="refreshPage()">Refresh Page</button>
+
+        <div id="output" class="output">
+          Click buttons above to test functionality...
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h3>📝 Instructions:</h3>
+        <p>1. Open the chatbot widget and send some messages</p>
+        <p>2. Use the test buttons to inspect the user ID and chat history</p>
+        <p>3. Refresh the page to see that messages persist</p>
+        <p>4. Check browser's localStorage to see stored data</p>
+        <p>5. The webhook now receives userId and chatHistory in the payload</p>
+      </div>
+
+      <div class="info-section">
+        <h3>🔍 Webhook Payload Structure:</h3>
+        <div class="output">
+          { "message": "User's message", "timestamp":
+          "2024-01-01T12:00:00.000Z", "type": "text", "userId":
+          "user_1704110400000_abc123def", "chatHistory": [ { "content":
+          "Previous message", "sender": "user", "timestamp":
+          "2024-01-01T11:59:00.000Z" } // ... last 10 messages for context ] }
+        </div>
+      </div>
+    </div>
+
+    <!-- Chatbot Configuration -->
+    <script>
+      window.ChatbotConfig = {
+        webhookUrl:
+          "https://maheliacruz.app.n8n.cloud/webhook/45f37933-155d-49a7-ab0a-c55c936942fa",
+        title: "Test Assistant",
+        position: "bottom-right",
+        theme: {
+          primaryColor: "#667eea",
+          secondaryColor: "#764ba2",
+          textColor: "#333",
+          backgroundColor: "#fff",
+        },
+      };
+    </script>
+
+    <!-- Load the chatbot widget -->
+    <script src="embed.js"></script>
+
+    <script>
+      function showUserId() {
+        const userId = window.chatbotWidgetInstance?.getUserId();
+        document.getElementById("output").textContent = `User ID: ${
+          userId || "Widget not loaded yet"
+        }`;
+      }
+
+      function showChatHistory() {
+        const history = window.chatbotWidgetInstance?.getChatHistory();
+        document.getElementById("output").textContent =
+          `Chat History (${history?.length || 0} messages):\n\n` +
+          JSON.stringify(history || [], null, 2);
+      }
+
+      function clearHistory() {
+        if (window.chatbotWidgetInstance) {
+          window.chatbotWidgetInstance.clearChatHistory();
+          document.getElementById("output").textContent =
+            "Chat history cleared!";
+        } else {
+          document.getElementById("output").textContent =
+            "Widget not loaded yet";
+        }
+      }
+
+      function addTestMessage() {
+        if (window.chatbotWidgetInstance) {
+          window.chatbotWidgetInstance.addMessage(
+            "This is a test message added programmatically",
+            "user"
+          );
+          document.getElementById("output").textContent =
+            "Test message added to chat!";
+        } else {
+          document.getElementById("output").textContent =
+            "Widget not loaded yet";
+        }
+      }
+
+      function refreshPage() {
+        location.reload();
+      }
+
+      // Show initial user ID when page loads
+      setTimeout(() => {
+        if (window.chatbotWidgetInstance) {
+          showUserId();
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Integration Test</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        margin: 0;
+        padding: 40px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: white;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
+      .code-block {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+        font-family: "Courier New", monospace;
+        overflow-x: auto;
+      }
+      .highlight {
+        background: rgba(255, 255, 0, 0.2);
+        padding: 2px 4px;
+        border-radius: 3px;
+      }
+      .step {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 15px 0;
+      }
+      .step h3 {
+        margin-top: 0;
+        color: #4ade80;
+      }
+      .url-box {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 15px;
+        border-radius: 8px;
+        margin: 10px 0;
+        word-break: break-all;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚀 Quick Integration Guide</h1>
+      <p>
+        Follow these simple steps to integrate the chatbot widget into any
+        website:
+      </p>
+
+      <div class="step">
+        <h3>Step 1: Deploy the Widget</h3>
+        <p>Choose one of these deployment options:</p>
+
+        <h4>Option A: Vercel (Recommended)</h4>
+        <div class="code-block">
+          # Install Vercel CLI npm install -g vercel # Deploy from this
+          directory vercel # Follow the prompts # Your widget will be available
+          at: https://your-project.vercel.app/embed.js
+        </div>
+
+        <h4>Option B: GitHub Pages</h4>
+        <div class="code-block">
+          1. Push this code to a GitHub repository 2. Go to Settings > Pages in
+          your repo 3. Enable GitHub Pages from main branch 4. Your widget will
+          be at: https://username.github.io/repo-name/embed.js
+        </div>
+
+        <h4>Option C: Netlify Drop</h4>
+        <div class="code-block">
+          1. Go to https://netlify.com/drop 2. Drag and drop this entire folder
+          3. Get instant deployment URL 4. Your widget will be at:
+          https://random-name.netlify.app/embed.js
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>Step 2: Configure Your Webhook</h3>
+        <p>
+          Update the webhook URL in the integration code below to point to your
+          backend endpoint.
+        </p>
+      </div>
+
+      <div class="step">
+        <h3>Step 3: Add to Any Website</h3>
+        <p>Copy and paste this code into any HTML page:</p>
+
+        <div class="code-block">
+          &lt;!-- Basic Integration --&gt; &lt;script&gt; window.ChatbotConfig =
+          {
+          <span class="highlight"
+            >webhookUrl: 'https://your-webhook-endpoint.com/webhook'</span
+          >, // ← Change this! title: 'Support Assistant', position:
+          'bottom-right' }; &lt;/script&gt; &lt;script src="<span
+            class="highlight"
+            >https://your-deployed-url.com/embed.js</span
+          >"&gt;&lt;/script&gt; &lt;!-- ← Change this! --&gt;
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>Step 4: Test Integration</h3>
+        <p>Create a simple test page:</p>
+
+        <div class="code-block">
+          &lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;Widget
+          Test&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;h1&gt;Testing
+          Chatbot Widget&lt;/h1&gt; &lt;script&gt; window.ChatbotConfig = {
+          webhookUrl: 'https://httpbin.org/post', // Test endpoint title: 'Test
+          Bot' }; &lt;/script&gt; &lt;script
+          src="YOUR_DEPLOYED_SCRIPT_URL"&gt;&lt;/script&gt; &lt;/body&gt;
+          &lt;/html&gt;
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>🎯 Current Demo URLs</h3>
+        <p>For testing purposes, you can use these local URLs:</p>
+
+        <div class="url-box">
+          <strong>Local Development:</strong><br />
+          http://localhost:3000/embed.js
+        </div>
+
+        <div class="url-box">
+          <strong>File Protocol (for testing):</strong><br />
+          file:///e:/Fiverr/widget/embed.js
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>🔧 Advanced Configuration</h3>
+        <div class="code-block">
+          &lt;script&gt; window.ChatbotConfig = { webhookUrl:
+          'https://your-webhook.com/chat', title: 'Customer Support', position:
+          'bottom-right', // bottom-left, top-right, top-left theme: {
+          primaryColor: '#007bff', secondaryColor: '#6c757d', textColor: '#333',
+          backgroundColor: '#fff' } }; &lt;/script&gt; &lt;script
+          src="https://your-deployed-url.com/embed.js"&gt;&lt;/script&gt;
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>📊 Webhook Payload</h3>
+        <p>Your webhook will receive this data structure:</p>
+
+        <div class="code-block">
+          { "message": "User's message", "timestamp":
+          "2024-01-01T12:00:00.000Z", "type": "text", "userId":
+          "user_1704110400000_abc123def" }
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>✅ Features Included</h3>
+        <ul>
+          <li>✨ Unique user identification</li>
+          <li>💾 Chat history persistence (localStorage)</li>
+          <li>🔄 Messages persist across page refreshes</li>
+          <li>🎤 Voice input support</li>
+          <li>📱 Fully responsive design</li>
+          <li>🎨 Customizable themes</li>
+          <li>🌐 CORS-enabled for cross-domain use</li>
+          <li>🔧 JavaScript API for programmatic control</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <h3>🆘 Need Help?</h3>
+        <p>Check these resources:</p>
+        <ul>
+          <li>📖 <strong>README.md</strong> - Complete documentation</li>
+          <li>
+            🚀 <strong>DEPLOYMENT_GUIDE.md</strong> - Detailed deployment
+            instructions
+          </li>
+          <li>
+            🧪 <strong>test-user-id-storage.html</strong> - Test the new
+            features
+          </li>
+          <li>💡 <strong>demo.html</strong> - Live demo</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Demo Widget (using local file) -->
+    <script>
+      window.ChatbotConfig = {
+        webhookUrl: "https://httpbin.org/post", // Test endpoint
+        title: "Demo Assistant",
+        position: "bottom-right",
+      };
+    </script>
+    <script src="embed.js"></script>
+  </body>
+</html>

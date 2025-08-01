@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Website with Chatbot Widget</title>
+    <style>
+        /* Your existing website styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .footer {
+            background: #34495e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .integration-note {
+            background: #e8f5e8;
+            border: 2px solid #4caf50;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .integration-note h4 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+        
+        .code-snippet {
+            background: #f4f4f4;
+            border-radius: 4px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h2>Your Awesome Website</h2>
+    </header>
+    
+    <section class="hero">
+        <h1>Welcome to Our Website</h1>
+        <p>This is an example of how the chatbot widget integrates seamlessly into any existing website.</p>
+    </section>
+    
+    <div class="container">
+        <div class="integration-note">
+            <h4>🤖 Chatbot Widget Integration Example</h4>
+            <p>This page demonstrates how the chatbot widget appears on a real website. The widget is embedded using just a single script tag!</p>
+            <div class="code-snippet">
+                &lt;script src="embed.js"&gt;&lt;/script&gt;
+            </div>
+            <p><strong>Look for the chat button in the bottom-right corner!</strong></p>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <h3>🚀 Easy Integration</h3>
+                <p>Add the chatbot to any website with just one line of code. No complex setup or configuration required.</p>
+            </div>
+            
+            <div class="card">
+                <h3>💬 Smart Conversations</h3>
+                <p>The widget connects to your webhook endpoint, allowing for intelligent responses powered by your backend or AI service.</p>
+            </div>
+            
+            <div class="card">
+                <h3>🎤 Voice Support</h3>
+                <p>Users can interact using voice commands with built-in speech recognition and text-to-speech capabilities.</p>
+            </div>
+            
+            <div class="card">
+                <h3>📱 Responsive Design</h3>
+                <p>Works perfectly on desktop, tablet, and mobile devices with an adaptive interface that fits any screen size.</p>
+            </div>
+            
+            <div class="card">
+                <h3>🎨 Customizable</h3>
+                <p>Easily customize colors, position, and branding to match your website's design and brand identity.</p>
+            </div>
+            
+            <div class="card">
+                <h3>⚡ High Performance</h3>
+                <p>Lightweight and optimized for fast loading. The widget doesn't impact your website's performance.</p>
+            </div>
+        </div>
+        
+        <section>
+            <h2>How It Works</h2>
+            <p>The chatbot widget operates by sending user messages to your configured webhook endpoint. Here's the flow:</p>
+            <ol>
+                <li><strong>User Input:</strong> User types a message or speaks using voice input</li>
+                <li><strong>Webhook Call:</strong> Widget sends the message to your webhook URL</li>
+                <li><strong>Processing:</strong> Your backend processes the message (AI, database lookup, etc.)</li>
+                <li><strong>Response:</strong> Your webhook returns a JSON response with the bot's reply</li>
+                <li><strong>Display:</strong> Widget shows the response and optionally speaks it aloud</li>
+            </ol>
+        </section>
+        
+        <section>
+            <h2>Configuration Example</h2>
+            <p>You can customize the widget before loading it:</p>
+            <div class="code-snippet">
+&lt;script&gt;
+    window.ChatbotConfig = {
+        webhookUrl: 'https://your-api.com/webhook',
+        title: 'Customer Support',
+        position: 'bottom-left',
+        theme: {
+            primaryColor: '#3498db',
+            secondaryColor: '#2980b9'
+        }
+    };
+&lt;/script&gt;
+&lt;script src="embed.js"&gt;&lt;/script&gt;
+            </div>
+        </section>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2024 Your Awesome Website. All rights reserved.</p>
+        <p>Powered by the amazing Chatbot Widget!</p>
+    </footer>
+    
+    <!-- 
+        CHATBOT WIDGET INTEGRATION
+        This is all you need to add the chatbot to your website!
+    -->
+    <script>
+        // Optional: Custom configuration
+        window.ChatbotConfig = {
+            webhookUrl: 'https://maheliacruz.app.n8n.cloud/webhook/45f37933-155d-49a7-ab0a-c55c936942fa',
+            title: 'Support Assistant',
+            position: 'bottom-right',
+            theme: {
+                primaryColor: '#3498db',
+                secondaryColor: '#2980b9'
+            }
+        };
+    </script>
+    <script src="embed.js"></script>
+</body>
+</html>

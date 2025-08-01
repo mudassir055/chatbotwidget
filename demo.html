@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot Widget Demo</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        margin: 0;
+        padding: 40px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: white;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        opacity: 0.9;
+      }
+
+      .demo-content {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .feature-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .feature-list li {
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .feature-list li:before {
+        content: "✓";
+        color: #4ade80;
+        font-weight: bold;
+        margin-right: 1rem;
+        font-size: 1.2rem;
+      }
+
+      .cta {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .cta-text {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+      }
+
+      .widget-indicator {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        font-size: 0.9rem;
+      }
+
+      .pulse {
+        width: 8px;
+        height: 8px;
+        background: #4ade80;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(74, 222, 128, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+        }
+      }
+
+      .code-section {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+      }
+
+      .code-section h3 {
+        margin-top: 0;
+        color: #4ade80;
+      }
+
+      pre {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 0.9rem;
+      }
+
+      code {
+        color: #fbbf24;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🤖 Chatbot Widget</h1>
+      <p class="subtitle">
+        A beautiful, embeddable chatbot widget with voice support
+      </p>
+
+      <div class="demo-content">
+        <h2>Features</h2>
+        <ul class="feature-list">
+          <li>💬 Text messaging with webhook integration</li>
+          <li>🎤 Voice input using speech recognition</li>
+          <li>🔊 Text-to-speech responses</li>
+          <li>📱 Responsive design for all devices</li>
+          <li>🎨 Customizable themes and positioning</li>
+          <li>⚡ Easy to embed in any website</li>
+          <li>🌐 Cross-browser compatible</li>
+        </ul>
+      </div>
+
+      <div class="demo-content">
+        <h2>How to Use</h2>
+        <p>
+          The chatbot widget is now active on this page! Look for the chat
+          button in the bottom-right corner.
+        </p>
+
+        <div class="cta">
+          <p class="cta-text">Try it out by clicking the chat button!</p>
+          <div class="widget-indicator">
+            <div class="pulse"></div>
+            Widget is active
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-content">
+        <div class="code-section">
+          <h3>🚀 Quick Integration</h3>
+          <p>Add this single line to any website to embed the chatbot:</p>
+          <pre><code>&lt;script src="embed.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+
+        <div class="code-section">
+          <h3>⚙️ Custom Configuration</h3>
+          <p>Customize the widget before loading:</p>
+          <pre><code>&lt;script&gt;
+    window.ChatbotConfig = {
+        webhookUrl: 'your-webhook-url',
+        title: 'Your Assistant',
+        position: 'bottom-left', // bottom-right, bottom-left, top-right, top-left
+        theme: {
+            primaryColor: '#667eea',
+            secondaryColor: '#764ba2'
+        }
+    };
+&lt;/script&gt;
+&lt;script src="embed.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="demo-content">
+        <h2>Webhook Integration</h2>
+        <p>The widget sends POST requests to your webhook with this format:</p>
+        <pre><code>{
+    "message": "User's message",
+    "timestamp": "2024-01-01T12:00:00.000Z",
+    "type": "text"
+}</code></pre>
+        <p>Your webhook should respond with:</p>
+        <pre><code>{
+    "response": "Bot's reply message"
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Load the chatbot widget -->
+    <script src="embed.js"></script>
+  </body>
+</html>
