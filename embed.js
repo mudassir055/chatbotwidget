@@ -105,7 +105,13 @@
             letter-spacing: -0.01em;
         }
 
-        .chatbot-embed-close {
+        .chatbot-embed-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chatbot-embed-clear, .chatbot-embed-close {
             background: rgba(255, 255, 255, 0.15);
             border: none;
             color: white;
@@ -121,12 +127,18 @@
             transition: all 0.2s ease;
         }
 
-        .chatbot-embed-close:hover {
+        .chatbot-embed-clear:hover, .chatbot-embed-close:hover {
             background: rgba(255, 255, 255, 0.25);
         }
 
-        .chatbot-embed-close:active {
+        .chatbot-embed-clear:active, .chatbot-embed-close:active {
             transform: scale(0.95);
+        }
+
+        .chatbot-embed-clear svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
         }
 
         .chatbot-embed-messages {
@@ -449,7 +461,14 @@
         <div class="chatbot-embed-widget" id="chatbotEmbedWidget">
             <div class="chatbot-embed-header">
                 <div class="chatbot-embed-title">${config.title}</div>
-                <button class="chatbot-embed-close" id="chatbotEmbedClose">&times;</button>
+                <div class="chatbot-embed-header-actions">
+                    <button class="chatbot-embed-clear" id="chatbotEmbedClear" title="Clear Chat">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                        </svg>
+                    </button>
+                    <button class="chatbot-embed-close" id="chatbotEmbedClose">&times;</button>
+                </div>
             </div>
 
             <div class="chatbot-embed-messages" id="chatbotEmbedMessages">
@@ -502,6 +521,7 @@
       this.toggleButton = document.getElementById("chatbotEmbedToggle");
       this.widget = document.getElementById("chatbotEmbedWidget");
       this.closeButton = document.getElementById("chatbotEmbedClose");
+      this.clearButton = document.getElementById("chatbotEmbedClear");
       this.messagesContainer = document.getElementById("chatbotEmbedMessages");
       this.messageInput = document.getElementById("chatbotEmbedMessageInput");
       this.voiceButton = document.getElementById("chatbotEmbedVoiceButton");
@@ -511,6 +531,7 @@
     initializeEventListeners() {
       this.toggleButton.addEventListener("click", () => this.toggleWidget());
       this.closeButton.addEventListener("click", () => this.closeWidget());
+      this.clearButton.addEventListener("click", () => this.clearChat());
       this.sendButton.addEventListener("click", () => this.sendMessage());
       this.voiceButton.addEventListener("click", () =>
         this.toggleVoiceRecording()
@@ -635,6 +656,22 @@
       this.isOpen = false;
       this.widget.classList.remove("open");
       this.toggleButton.style.display = "flex";
+    }
+
+    clearChat() {
+      // Clear the chat history from memory and localStorage
+      this.chatHistory = [];
+      this.saveChatHistory();
+      
+      // Clear the messages container
+      this.messagesContainer.innerHTML = "";
+      
+      // Add the welcome message back
+      this.addMessage(
+        "Hello! I'm here to help you. You can type your message or use the microphone to speak.",
+        "bot",
+        false // Don't save to history
+      );
     }
 
     toggleVoiceRecording() {
